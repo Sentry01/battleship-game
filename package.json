@@ -1,6 +1,7 @@
 {
   "name": "battleship-game",
   "version": "1.0.0",
+  "type": "module",
   "description": "A modern, visually appealing battleship game built with JavaScript where players can compete against AI opponents",
   "main": "index.js",
   "scripts": {
