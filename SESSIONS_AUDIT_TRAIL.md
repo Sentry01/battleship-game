@@ -156,7 +156,7 @@ Each session entry follows this format:
 ## Related Issues
 
 - **Issue #1**: [🎯 Mission: Build a Modern Battleship Game with AI Opponents](https://github.com/Sentry01/battleship-game/issues/1)
-- **Issue #3**: [📋 Development Sessions - Audit Trail](https://github.com/Sentry01/battleship-game/issues/3)
+- **Issue #3**: [📋 Development Sessions - Audit Trail](https://github.com/Sentry01/battleship-game/issues/3) - This GitHub issue tracks all development sessions
 
 ## Session Statistics
 
