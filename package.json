@@ -1,0 +1,43 @@
+{
+  "name": "battleship-game",
+  "version": "1.0.0",
+  "description": "A modern, visually appealing battleship game built with JavaScript where players can compete against AI opponents",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:unit": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:integration": "vitest run --config vitest.integration.config.js",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sentry01/battleship-game.git"
+  },
+  "keywords": [
+    "battleship",
+    "game",
+    "javascript",
+    "ai",
+    "testing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.50.0",
+    "jsdom": "^22.1.0",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.6"
+  }
+}
