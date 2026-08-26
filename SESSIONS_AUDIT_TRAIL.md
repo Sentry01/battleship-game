@@ -39,7 +39,7 @@ Each session entry follows this format:
   - ADR-003: Comprehensive multi-layer testing approach
   - ADR-004: GitHub Actions with comprehensive workflow stages
   - ADR-005: Practical branch protection with development flexibility
-  - ADR-006: Cognition-inspired engineering-first aesthetic
+  - ADR-006: Clean, modern engineering-first aesthetic
 - **Challenges**:
   - GitHub CLI installation - resolved by manual download and installation
   - Branch protection API complexity - resolved with practical configuration

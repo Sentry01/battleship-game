@@ -10,7 +10,7 @@ Build a modern, visually appealing battleship game in JavaScript where players c
 - **Game States** - Ship placement, gameplay, win/lose screens
 - **Score Tracking** - Track wins, losses, and game statistics
 
-## Design Philosophy (Cognition-inspired)
+## Design Philosophy (Clean Modern Aesthetic)
 - **Clean & Minimal** - High contrast, generous whitespace, sharp geometry
 - **Engineering-first Aesthetic** - Consistent grid, clean alignment, confident modern feel
 - **Color Palette** - High contrast neutral palette:

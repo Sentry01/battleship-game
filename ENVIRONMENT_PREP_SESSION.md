@@ -143,13 +143,13 @@ Created comprehensive GitHub Actions workflows:
 - Scalable configuration for future tightening
 
 ### ADR-006: Design Philosophy
-**Decision**: Cognition-inspired engineering-first aesthetic  
+**Decision**: Clean, modern engineering-first aesthetic  
 **Rationale**:
 - High-contrast neutral palette (black, white, grays)
 - Clean geometric sans-serif typography
 - 8px spacing system
 - Generous whitespace and sharp geometry
-- Aligns with hiring task requirements
+- Aligns with modern design principles
 
 ## Development Process
 
