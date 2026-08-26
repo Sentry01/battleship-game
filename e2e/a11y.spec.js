@@ -55,7 +55,7 @@ test.describe("Accessibility Tests", () => {
     await page.click("#randomPlacement");
     await page.click("#startGame");
 
-    const gridCells = page.locator('[data-type="ai"]');
+    const gridCells = page.locator('[data-type="attack"]');
     const firstCell = gridCells.first();
     const ariaLabel = await firstCell.getAttribute("aria-label");
 
@@ -67,7 +67,7 @@ test.describe("Accessibility Tests", () => {
     await page.click("#randomPlacement");
     await page.click("#startGame");
 
-    const gridCells = page.locator('[data-type="ai"]');
+    const gridCells = page.locator('[data-type="attack"]');
     await gridCells.nth(0).focus();
 
     const focusedElement = await page.evaluate(() => {
