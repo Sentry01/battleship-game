@@ -1,0 +1,38 @@
+version: 2
+updates:
+  # Enable for production dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "Sentry01"
+    assignees:
+      - "Sentry01"
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps):"
+      prefix-development: "chore(deps-dev):"
+    ignore:
+      # Ignore major version updates for stability
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Enable for development dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "develop"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "09:00"
+    labels:
+      - "dependencies"
+      - "development"
+    commit-message:
+      prefix: "chore(deps-dev):"

@@ -1,0 +1,13 @@
+name: "Battleship Game Security Configuration"
+
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+paths-ignore:
+  - node_modules/**
+  - dist/**
+  - build/**
+  - coverage/**
+  - '**/*.test.js'
+  - '**/*.spec.js'
