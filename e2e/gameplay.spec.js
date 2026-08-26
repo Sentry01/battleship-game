@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Gameplay Tests", () => {
   test("play a complete game with medium difficulty", async ({ page }) => {
     test.setTimeout(90000); // 90 second timeout
-    await page.goto("http://localhost:5178/battleship-game/");
+    await page.goto("/");
     
     // Select difficulty
     await page.selectOption("#difficulty", "medium");
@@ -66,7 +66,7 @@ test.describe("Gameplay Tests", () => {
   
   test("manual placement flow", async ({ page }) => {
     test.setTimeout(60000); // 1 minute timeout
-    await page.goto("http://localhost:5178/battleship-game/");
+    await page.goto("/");
     
     // Select manual placement
     await page.click("#manualPlacement");
@@ -99,7 +99,7 @@ test.describe("Gameplay Tests", () => {
   
   test("all game states and transitions", async ({ page }) => {
     test.setTimeout(60000); // 1 minute timeout
-    await page.goto("http://localhost:5178/battleship-game/");
+    await page.goto("/");
     
     // Setup screen
     await expect(page.locator("h2:has-text('Game Setup')")).toBeVisible();
