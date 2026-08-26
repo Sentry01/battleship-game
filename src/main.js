@@ -9,6 +9,7 @@ class BattleshipGame {
     this.app = document.getElementById("app");
     this.currentShipIndex = 0;
     this.isHorizontal = true;
+    this.placementMode = "random"; // Default to random placement
     this.init();
   }
 
@@ -197,7 +198,7 @@ class BattleshipGame {
               }
             }
 
-            return `<div class="${cellClass}" data-row="${rowIndex}" data-col="${colIndex}" data-type="${type}" tabindex="${tabIndex}" role="button" aria-label="${ariaLabel}">${cellContent}</div>`;
+            return `<div class="${cellClass}" data-row="${rowIndex}" data-col="${colIndex}" data-type="${type === 'ai' ? 'attack' : 'player'}" tabindex="${tabIndex}" role="button" aria-label="${ariaLabel}">${cellContent}</div>`;
           })
           .join("")
       )
@@ -242,25 +243,34 @@ class BattleshipGame {
 
     if (randomPlacementBtn) {
       randomPlacementBtn.addEventListener("click", () => {
-        this.setupRandomGame();
+        this.placementMode = "random";
+        randomPlacementBtn.setAttribute("aria-pressed", "true");
+        if (manualPlacementBtn) manualPlacementBtn.setAttribute("aria-pressed", "false");
       });
     }
 
     if (manualPlacementBtn) {
       manualPlacementBtn.addEventListener("click", () => {
-        this.startManualPlacement();
+        this.placementMode = "manual";
+        manualPlacementBtn.setAttribute("aria-pressed", "true");
+        if (randomPlacementBtn) randomPlacementBtn.setAttribute("aria-pressed", "false");
       });
     }
 
     if (startGameBtn) {
       startGameBtn.addEventListener("click", () => {
-        this.startGame();
+        // Check if manual placement was selected
+        if (manualPlacementBtn && manualPlacementBtn.getAttribute("aria-pressed") === "true") {
+          this.startManualPlacement();
+        } else {
+          this.startGame();
+        }
       });
     }
 
     // Grid click handlers
     document.addEventListener("click", (e) => {
-      if (e.target.classList.contains("grid-cell") && e.target.dataset.type === "ai") {
+      if (e.target.classList.contains("grid-cell") && e.target.dataset.type === "attack") {
         this.handlePlayerAttack(parseInt(e.target.dataset.row), parseInt(e.target.dataset.col));
       } else if (
         e.target.classList.contains("grid-cell") &&
@@ -273,7 +283,7 @@ class BattleshipGame {
     // Grid keyboard handlers for accessibility
     document.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
-        if (e.target.classList.contains("grid-cell") && e.target.dataset.type === "ai") {
+        if (e.target.classList.contains("grid-cell") && e.target.dataset.type === "attack") {
           e.preventDefault();
           this.handlePlayerAttack(parseInt(e.target.dataset.row), parseInt(e.target.dataset.col));
         } else if (
