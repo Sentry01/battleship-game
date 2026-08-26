@@ -5,11 +5,13 @@ Thank you for your interest in contributing to the Battleship Game! This documen
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v20 or higher)
 - npm or yarn
 - Git
 
 ### Setup
+
 1. Fork the repository
 2. Clone your fork:
    ```bash
@@ -24,11 +26,13 @@ Thank you for your interest in contributing to the Battleship Game! This documen
 ## Development
 
 ### Running the Project
+
 ```bash
 npm run dev
 ```
 
 ### Running Tests
+
 ```bash
 # Run all tests
 npm test
@@ -44,6 +48,7 @@ npm run test:e2e
 ```
 
 ### Code Quality
+
 ```bash
 # Run linting
 npm run lint
@@ -58,7 +63,9 @@ npm run format:check
 ## Contribution Guidelines
 
 ### Making Changes
+
 1. Create a new branch for your feature or bug fix:
+
    ```bash
    git checkout -b feature/your-feature-name
    # or
@@ -74,6 +81,7 @@ npm run format:check
    - Check code quality with linting
 
 4. Commit your changes with clear, descriptive messages:
+
    ```bash
    git commit -m "feat: add your feature description"
    # or
@@ -81,6 +89,7 @@ npm run format:check
    ```
 
 5. Push to your fork:
+
    ```bash
    git push origin feature/your-feature-name
    ```
@@ -88,6 +97,7 @@ npm run format:check
 6. Create a pull request to the main repository
 
 ### Pull Request Process
+
 1. Ensure your PR description clearly describes the changes and the reason for them
 2. Link to any related issues
 3. Ensure all CI checks pass
@@ -95,12 +105,14 @@ npm run format:check
 5. Respond to review feedback promptly
 
 ### Code Style
+
 - Follow the existing code style in the project
 - Use meaningful variable and function names
 - Add comments for complex logic
 - Keep functions small and focused
 
 ### Testing
+
 - Write unit tests for new functions
 - Add integration tests for new features
 - Update E2E tests for UI changes
@@ -109,6 +121,7 @@ npm run format:check
 ## Design Guidelines
 
 ### Cognition-Inspired Design
+
 - Follow the clean, minimal aesthetic
 - Use the defined color palette (high contrast neutrals + accent)
 - Maintain the 8px spacing system
@@ -116,12 +129,14 @@ npm run format:check
 - Ensure high contrast and accessibility
 
 ### UI Components
+
 - Use consistent component patterns
 - Ensure responsive design (mobile-first)
 - Implement smooth animations
 - Test across different browsers and viewports
 
 ## Security Considerations
+
 - Never commit secrets or API keys
 - Follow security best practices
 - Update dependencies regularly
@@ -129,6 +144,7 @@ npm run format:check
 - Test with security scanning tools
 
 ## Issues and Bug Reports
+
 - Use the provided issue templates
 - Provide clear steps to reproduce
 - Include environment details
@@ -136,6 +152,7 @@ npm run format:check
 - Check existing issues before creating new ones
 
 ## Feature Requests
+
 - Use the feature request template
 - Describe the problem you're solving
 - Explain the proposed solution
@@ -143,15 +160,18 @@ npm run format:check
 - Discuss in issues before implementing
 
 ## Questions
+
 - Use GitHub Discussions for questions
 - Check existing discussions first
 - Provide context and details
 - Be patient with responses
 
 ## License
+
 By contributing to this project, you agree that your contributions will be licensed under the MIT License.
 
 ## Community Guidelines
+
 - Be respectful and inclusive
 - Provide constructive feedback
 - Help others learn and grow

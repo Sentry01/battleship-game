@@ -10,8 +10,9 @@
     "test": "vitest",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:integration": "vitest run --config vitest.integration.config.js",
+    "test:integration": "vitest run src/game/__tests__/integration.test.js",
     "test:e2e": "playwright test",
+    "test:a11y": "playwright test --config playwright-a11y.config.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
@@ -30,6 +31,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.40.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.50.0",

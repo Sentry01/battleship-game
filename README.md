@@ -13,6 +13,7 @@ A modern, visually appealing battleship game built with JavaScript where players
 ## Design Philosophy
 
 Following Cognition's engineering-first aesthetic:
+
 - Clean & Minimal - High contrast, generous whitespace, sharp geometry
 - High contrast neutral palette with accent colors
 - Consistent grid, clean alignment, confident modern feel
@@ -30,12 +31,13 @@ Following Cognition's engineering-first aesthetic:
 ## Testing
 
 This project includes comprehensive testing:
-- Unit tests (>80% coverage)
-- Integration tests
-- E2E tests with Playwright
-- Security testing (SAST, dependency scanning)
-- Performance testing
-- Accessibility testing (WCAG 2.1 AA)
+
+- Unit tests (38 tests covering game state and AI logic)
+- Integration tests (full game flow testing)
+- E2E tests with Playwright (13 tests covering user interactions)
+- Accessibility testing with axe-core (WCAG 2.1 AA compliance)
+- Security testing (SAST with CodeQL, dependency scanning)
+- Performance testing (Lighthouse CI)
 
 ## Getting Started
 
@@ -59,6 +61,7 @@ npm run build
 ## CI/CD
 
 The project uses GitHub Actions for:
+
 - Code quality checks (ESLint, Prettier)
 - Security scanning (CodeQL, dependency review)
 - Automated testing (unit, integration, E2E)

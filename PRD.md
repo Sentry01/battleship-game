@@ -1,9 +1,11 @@
 # Battleship Game - Product Requirements Document
 
 ## Objective
+
 Build a modern, visually appealing battleship game in JavaScript where players can compete against AI opponents. The game should showcase clean, modern design following Cognition's engineering-first aesthetic and be hosted on GitHub with comprehensive testing and security measures.
 
 ## Core Features
+
 - **Single Player vs AI** - Classic battleship gameplay against computer opponent
 - **Multiple AI Difficulty Levels** - Easy, Medium, Hard with different strategic behaviors
 - **Modern UI/UX** - Clean, responsive design with smooth animations
@@ -11,6 +13,7 @@ Build a modern, visually appealing battleship game in JavaScript where players c
 - **Score Tracking** - Track wins, losses, and game statistics
 
 ## Design Philosophy (Clean Modern Aesthetic)
+
 - **Clean & Minimal** - High contrast, generous whitespace, sharp geometry
 - **Engineering-first Aesthetic** - Consistent grid, clean alignment, confident modern feel
 - **Color Palette** - High contrast neutral palette:
@@ -24,9 +27,10 @@ Build a modern, visually appealing battleship game in JavaScript where players c
 - **Components** - Flat cards with subtle borders, 12px corner radius for UI elements
 
 ## Technical Stack
+
 - **Frontend**: JavaScript (vanilla or lightweight framework like React/Vue)
 - **Styling**: CSS framework (Tailwind CSS recommended for design consistency)
-- **Testing**: 
+- **Testing**:
   - Unit/Integration: Jest or Vitest
   - E2E: Playwright
   - Security: CodeQL, dependency review
@@ -34,17 +38,19 @@ Build a modern, visually appealing battleship game in JavaScript where players c
 - **Version Control**: GitHub with GitHub Actions for CI/CD
 
 ## Functional Requirements
+
 1. **Game Board**: 10x10 grid for player and AI
 2. **Fleet**: Standard battleship ships (Carrier, Battleship, Cruiser, Submarine, Destroyer)
 3. **Ship Placement**: Drag-and-drop or click-to-place system
 4. **Game Logic**: Valid move detection, hit/miss tracking, win condition
-5. **AI Behavior**: 
+5. **AI Behavior**:
    - Easy: Random shots
    - Medium: Basic targeting strategy
    - Hard: Advanced pattern recognition and probability-based targeting
 6. **Game States**: Setup, playing, game over with replay option
 
 ## Non-Functional Requirements
+
 - **Performance**: < 2 second load time, smooth 60fps animations
 - **Responsive**: Mobile-first design, works on desktop and mobile
 - **Accessibility**: Keyboard navigation, screen reader support, high contrast
@@ -54,10 +60,12 @@ Build a modern, visually appealing battleship game in JavaScript where players c
 ## Comprehensive Testing Strategy
 
 ### 1. Unit Testing
+
 **Framework**: Jest or Vitest
 **Coverage Target**: >80%
 
 **Test Categories**:
+
 - **Game Logic Tests**:
   - Ship placement validation
   - Hit/miss detection algorithms
@@ -78,6 +86,7 @@ Build a modern, visually appealing battleship game in JavaScript where players c
   - Score calculation
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Unit Tests
 on: [push, pull_request]
@@ -88,8 +97,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:unit
       - run: npm run test:coverage
@@ -97,9 +106,11 @@ jobs:
 ```
 
 ### 2. Integration Testing
+
 **Framework**: Jest or Vitest
 
 **Test Categories**:
+
 - **Component Integration**:
   - Ship placement UI integration with game logic
   - Board rendering with state management
@@ -113,6 +124,7 @@ jobs:
   - Persistence (if implemented)
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Integration Tests
 on: [push, pull_request]
@@ -123,16 +135,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:integration
 ```
 
 ### 3. End-to-End Testing (E2E)
+
 **Framework**: Playwright
 
 **Test Categories**:
+
 - **User Flow Tests**:
   - Complete game from start to finish (win scenario)
   - Complete game from start to finish (lose scenario)
@@ -152,6 +166,7 @@ jobs:
   - Component rendering accuracy
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: E2E Tests
 on: [push, pull_request]
@@ -163,8 +178,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npx playwright install --with-deps
       - run: npm run test:e2e
@@ -179,9 +194,11 @@ jobs:
 ### 4. Security Testing
 
 #### 4.1 Static Application Security Testing (SAST)
+
 **Tool**: GitHub CodeQL
 
 **Security Checks**:
+
 - SQL injection patterns
 - Cross-site scripting (XSS) vulnerabilities
 - Unsafe code execution
@@ -190,6 +207,7 @@ jobs:
 - Data exposure risks
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: CodeQL SAST
 on:
@@ -198,7 +216,7 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "31 7 * * 1"  # Weekly
+    - cron: "31 7 * * 1" # Weekly
 permissions:
   contents: read
   security-events: write
@@ -228,15 +246,18 @@ jobs:
 ```
 
 #### 4.2 Dependency Vulnerability Scanning
+
 **Tool**: GitHub Dependency Review Action
 
 **Security Checks**:
+
 - Known CVEs in dependencies
 - Outdated package versions
 - License compliance
 - Dependency tree analysis
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Dependency Review
 on: [pull_request]
@@ -254,9 +275,11 @@ jobs:
 ```
 
 #### 4.3 Code Quality Security Checks
+
 **Tools**: ESLint with security plugins, npm audit
 
 **Security Checks**:
+
 - Security best practices in code
 - Unsafe function usage
 - Potential injection points
@@ -264,6 +287,7 @@ jobs:
 - Secret leakage prevention
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Security Linting
 on: [push, pull_request]
@@ -274,17 +298,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run lint:security
       - run: npm audit --audit-level=high
 ```
 
 ### 5. Performance Testing
+
 **Tools**: Lighthouse CI, WebPageTest
 
 **Performance Metrics**:
+
 - Page load time (< 2 seconds)
 - First Contentful Paint (< 1.5 seconds)
 - Time to Interactive (< 3 seconds)
@@ -292,6 +318,7 @@ jobs:
 - Bundle size optimization
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Performance Tests
 on: [push, pull_request]
@@ -302,8 +329,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run build
       - uses: treosh/lighthouse-ci-action@v10
@@ -313,9 +340,11 @@ jobs:
 ```
 
 ### 6. Accessibility Testing
+
 **Tools**: Axe-core, Playwright accessibility
 
 **Accessibility Checks**:
+
 - WCAG 2.1 AA compliance
 - Keyboard navigation
 - Screen reader compatibility
@@ -324,6 +353,7 @@ jobs:
 - Focus management
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Accessibility Tests
 on: [push, pull_request]
@@ -334,16 +364,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:a11y
 ```
 
 ### 7. Code Quality Testing
+
 **Tools**: ESLint, Prettier, TypeScript (if applicable)
 
 **Quality Checks**:
+
 - Code style consistency
 - Code complexity analysis
 - Duplicate code detection
@@ -351,6 +383,7 @@ jobs:
 - Import/export validation
 
 **GitHub Actions Implementation**:
+
 ```yaml
 name: Code Quality
 on: [push, pull_request]
@@ -361,17 +394,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-      - run: npm run type-check  # if using TypeScript
+      - run: npm run type-check # if using TypeScript
 ```
 
 ## GitHub Actions CI/CD Pipeline
 
 ### Main Workflow (.github/workflows/ci.yml)
+
 ```yaml
 name: CI/CD Pipeline
 
@@ -390,8 +424,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
@@ -405,8 +439,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm audit --audit-level=high
       - uses: github/codeql-action/init@v3
@@ -436,8 +470,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:unit
       - run: npm run test:coverage
@@ -452,8 +486,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:integration
 
@@ -467,8 +501,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npx playwright install --with-deps
       - run: npm run test:e2e
@@ -488,8 +522,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run build
       - uses: treosh/lighthouse-ci-action@v10
@@ -506,8 +540,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run test:a11y
 
@@ -523,8 +557,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
       - run: npm ci
       - run: npm run build
       - uses: peaceiris/actions-gh-pages@v3
@@ -536,7 +570,9 @@ jobs:
 ## MCP Servers & Skills Configuration
 
 ### MCP Servers
+
 - **GitHub MCP Server**: Repository management, issue tracking, PR automation
+
   ```json
   {
     "mcpServers": {
@@ -564,12 +600,14 @@ jobs:
   ```
 
 ### Public Skills
+
 - **Testing Skills**: Leverage community testing patterns and workflows
 - **Frontend Development Skills**: Use existing frontend best practices
 - **Code Quality Skills**: Implement standard linting and formatting patterns
 - **CI/CD Skills**: Follow established GitHub Actions patterns
 
 ## Deliverables
+
 - Fully functional battleship game hosted on GitHub
 - Comprehensive test suite (unit, integration, E2E, security, performance, accessibility)
 - CI/CD pipeline via GitHub Actions with all testing categories
@@ -579,6 +617,7 @@ jobs:
 - Demonstrated code quality and testing practices
 
 ## Success Criteria
+
 - Game is fully playable with no critical bugs
 - All AI difficulty levels work as intended
 - Design follows Cognition-inspired modern aesthetic
@@ -593,6 +632,7 @@ jobs:
 - GitHub Actions workflows provide comprehensive feedback
 
 ## Future Enhancements
+
 - Multiplayer support (PvP)
 - Leaderboards and rankings
 - Tournament mode

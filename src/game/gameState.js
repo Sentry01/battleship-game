@@ -7,24 +7,24 @@ export class GameState {
     this.aiShips = this.initializeShips();
     this.playerAttacks = this.createEmptyGrid();
     this.aiAttacks = this.createEmptyGrid();
-    this.currentPlayer = 'player';
+    this.currentPlayer = "player";
     this.gameOver = false;
     this.winner = null;
   }
 
   createEmptyGrid() {
-    return Array(this.gridSize).fill(null).map(() => 
-      Array(this.gridSize).fill(null)
-    );
+    return Array(this.gridSize)
+      .fill(null)
+      .map(() => Array(this.gridSize).fill(null));
   }
 
   initializeShips() {
     return [
-      { name: 'Carrier', size: 5, hits: 0, sunk: false },
-      { name: 'Battleship', size: 4, hits: 0, sunk: false },
-      { name: 'Cruiser', size: 3, hits: 0, sunk: false },
-      { name: 'Submarine', size: 3, hits: 0, sunk: false },
-      { name: 'Destroyer', size: 2, hits: 0, sunk: false }
+      { name: "Carrier", size: 5, hits: 0, sunk: false },
+      { name: "Battleship", size: 4, hits: 0, sunk: false },
+      { name: "Cruiser", size: 3, hits: 0, sunk: false },
+      { name: "Submarine", size: 3, hits: 0, sunk: false },
+      { name: "Destroyer", size: 2, hits: 0, sunk: false },
     ];
   }
 
@@ -84,40 +84,45 @@ export class GameState {
 
   processAttack(row, col, defenderGrid, defenderShips, attackRecord) {
     if (attackRecord[row][col] !== null) {
-      return { success: false, message: 'Already attacked this position' };
+      return { success: false, message: "Already attacked this position" };
     }
 
-    const target = defenderShips.find(ship => ship.name === defenderGrid[row][col]);
-    
+    const target = defenderShips.find((ship) => ship.name === defenderGrid[row][col]);
+
     if (target) {
       target.hits++;
-      attackRecord[row][col] = 'hit';
-      
+      attackRecord[row][col] = "hit";
+
       if (target.hits >= target.size) {
         target.sunk = true;
-        return { success: true, hit: true, sunk: target.name, message: `Hit! ${target.name} sunk!` };
+        return {
+          success: true,
+          hit: true,
+          sunk: target.name,
+          message: `Hit! ${target.name} sunk!`,
+        };
       }
-      
-      return { success: true, hit: true, message: 'Hit!' };
+
+      return { success: true, hit: true, message: "Hit!" };
     } else {
-      attackRecord[row][col] = 'miss';
-      return { success: true, hit: false, message: 'Miss!' };
+      attackRecord[row][col] = "miss";
+      return { success: true, hit: false, message: "Miss!" };
     }
   }
 
   checkGameOver() {
-    const allPlayerShipsSunk = this.playerShips.every(ship => ship.sunk);
-    const allAiShipsSunk = this.aiShips.every(ship => ship.sunk);
+    const allPlayerShipsSunk = this.playerShips.every((ship) => ship.sunk);
+    const allAiShipsSunk = this.aiShips.every((ship) => ship.sunk);
 
     if (allPlayerShipsSunk) {
       this.gameOver = true;
-      this.winner = 'AI';
+      this.winner = "AI";
       return true;
     }
 
     if (allAiShipsSunk) {
       this.gameOver = true;
-      this.winner = 'player';
+      this.winner = "player";
       return true;
     }
 
@@ -131,7 +136,7 @@ export class GameState {
     this.aiShips = this.initializeShips();
     this.playerAttacks = this.createEmptyGrid();
     this.aiAttacks = this.createEmptyGrid();
-    this.currentPlayer = 'player';
+    this.currentPlayer = "player";
     this.gameOver = false;
     this.winner = null;
   }

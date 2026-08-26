@@ -1,17 +1,19 @@
 # Repository Setup Plan
 
 ## Overview
+
 This document outlines the comprehensive GitHub repository configuration for the Battleship Game project, leveraging GitHub's free security and code quality features for public repositories.
 
 ## GitHub Repository Configuration
 
 ### 1. Repository Creation
+
 - **Repository Name**: `battleship-game`
 - **Visibility**: Public
 - **Description**: Modern battleship game with AI opponents, comprehensive testing, and security measures
 - **Topics**: `javascript`, `game-development`, `battleship`, `ai`, `testing`, `playwright`, `security`
 - **License**: MIT License
-- **Branch Protection**: 
+- **Branch Protection**:
   - Main branch protection enabled
   - Require pull request reviews (1 reviewer)
   - Require status checks to pass before merging
@@ -21,18 +23,22 @@ This document outlines the comprehensive GitHub repository configuration for the
 ### 2. GitHub Advanced Security Features (Free for Public Repos)
 
 #### 2.1 Dependabot
+
 **Purpose**: Automated dependency monitoring and updates
 
 **Configuration Files**:
+
 - `.github/dependabot.yml` - Dependabot configuration
 - `.github/dependabot-alerts.yml` - Alert configuration
 
 **Features to Enable**:
+
 - **Dependabot Alerts**: Automatic vulnerability detection in dependencies
 - **Dependabot Security Updates**: Automated pull requests for vulnerability fixes
 - **Dependabot Version Updates**: Automated pull requests for dependency updates
 
 **Configuration**:
+
 ```yaml
 version: 2
 updates:
@@ -45,7 +51,7 @@ updates:
       time: "09:00"
     open-pull-requests-limit: 10
     reviewers:
-      - "shlomi"  # Replace with actual username
+      - "shlomi" # Replace with actual username
     assignees:
       - "shlomi"
     labels:
@@ -75,18 +81,22 @@ updates:
 ```
 
 #### 2.2 Code Scanning (CodeQL)
+
 **Purpose**: Static application security testing (SAST)
 
 **Features to Enable**:
+
 - **CodeQL Analysis**: Automated security vulnerability detection
 - **Security Query Suites**: Extended security and quality queries
 - **Custom CodeQL Configuration**: Tailored for JavaScript/TypeScript
 
 **Configuration Files**:
+
 - `.github/workflows/codeql-analysis.yml` - CodeQL workflow
 - `.github/codeql/codeql-config.yml` - Custom CodeQL configuration
 
 **Workflow Configuration**:
+
 ```yaml
 name: "CodeQL Advanced Security"
 
@@ -96,7 +106,7 @@ on:
   pull_request:
     branches: [main, develop]
   schedule:
-    - cron: '30 1 * * 0'  # Weekly on Sunday
+    - cron: "30 1 * * 0" # Weekly on Sunday
 
 permissions:
   contents: read
@@ -110,25 +120,25 @@ jobs:
       security-events: write
       actions: read
       contents: read
-    
+
     strategy:
       fail-fast: false
       matrix:
-        language: ['javascript-typescript']
-    
+        language: ["javascript-typescript"]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
           config-file: ./.github/codeql/codeql-config.yml
-      
+
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
-      
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
@@ -136,6 +146,7 @@ jobs:
 ```
 
 **Custom CodeQL Configuration**:
+
 ```yaml
 name: "Battleship Game Security Configuration"
 
@@ -148,8 +159,8 @@ paths-ignore:
   - dist/**
   - build/**
   - coverage/**
-  - '**/*.test.js'
-  - '**/*.spec.js'
+  - "**/*.test.js"
+  - "**/*.spec.js"
 
 packs:
   # Add custom query packs if needed
@@ -157,9 +168,11 @@ packs:
 ```
 
 #### 2.3 Secret Scanning
+
 **Purpose**: Detect secrets and credentials accidentally committed
 
 **Features to Enable**:
+
 - **Secret Scanning**: Automatic detection of API keys, tokens, passwords
 - **Secret Scanning Partner Protection**: Integration with service providers
 - **Push Protection**: Block commits containing secrets
@@ -167,6 +180,7 @@ packs:
 **Configuration**: Automatically enabled for public repositories
 
 **Patterns to Monitor**:
+
 - GitHub tokens
 - API keys (AWS, Google Cloud, etc.)
 - Database credentials
@@ -175,15 +189,18 @@ packs:
 - SSL certificates
 
 #### 2.4 GitHub Actions Security
+
 **Purpose**: Secure CI/CD pipeline
 
 **Security Measures**:
+
 - **Pin Actions to Commit SHAs**: Prevent supply chain attacks
 - **Least Privilege Permissions**: Minimal required permissions
 - **Environment Secrets**: Secure secret management
 - **Workflow Approval**: Manual approval for sensitive operations
 
 **Configuration Example**:
+
 ```yaml
 permissions:
   contents: read
@@ -194,9 +211,11 @@ permissions:
 ### 3. Code Quality Features
 
 #### 3.1 GitHub Actions Workflows
+
 **Comprehensive CI/CD Pipeline**:
 
 **Main CI Workflow** (`.github/workflows/ci.yml`):
+
 - Code quality checks (ESLint, Prettier)
 - Security scanning (CodeQL, dependency review)
 - Unit tests with coverage
@@ -207,28 +226,36 @@ permissions:
 - Build verification
 
 **Additional Workflows**:
+
 - `.github/workflows/labeler.yml` - Automatic PR labeling
 - `.github/workflows/stale.yml` - Close stale issues/PRs
 - `.github/workflows/lock.yml` - Lock closed conversations
 
 #### 3.2 Issue Templates
+
 **Templates to Create**:
+
 - `.github/ISSUE_TEMPLATE/bug_report.md` - Bug report template
 - `.github/ISSUE_TEMPLATE/feature_request.md` - Feature request template
 - `.github/ISSUE_TEMPLATE/question.md` - Question template
 
 #### 3.3 Pull Request Templates
+
 **Template to Create**:
+
 - `.github/PULL_REQUEST_TEMPLATE.md` - PR checklist and guidelines
 
 #### 3.4 Discussion Templates
+
 **Templates to Create**:
+
 - `.github/DISCUSSION_TEMPLATE/ideas.md` - Ideas discussion
 - `.github/DISCUSSION_TEMPLATE/help.md` - Help and support
 
 ### 4. Branch Protection Rules
 
 #### Main Branch Protection:
+
 - **Require pull request before merging**: Yes
 - **Required approvals**: 1
 - **Dismiss stale PR approvals**: Yes
@@ -241,6 +268,7 @@ permissions:
 - **Allow deletions**: No
 
 #### Required Status Checks:
+
 - Code Quality
 - Security Scanning
 - Unit Tests
@@ -253,6 +281,7 @@ permissions:
 ### 5. Repository Settings
 
 #### General Settings:
+
 - **Repository name**: battleship-game
 - **Description**: Modern battleship game with AI opponents and comprehensive testing
 - **Website**: (GitHub Pages URL after deployment)
@@ -261,6 +290,7 @@ permissions:
 - **License**: MIT License
 
 #### Features:
+
 - **Issues**: Enabled
 - **Projects**: Enabled (for project management)
 - **Wiki**: Enabled (for documentation)
@@ -270,6 +300,7 @@ permissions:
 - **Pages**: Enabled (for game hosting)
 
 #### Security & Analysis:
+
 - **Dependabot Alerts**: Enabled
 - **Dependabot Security Updates**: Enabled
 - **Dependabot Version Updates**: Enabled
@@ -280,10 +311,12 @@ permissions:
 ### 6. GitHub Pages Configuration
 
 #### Source:
+
 - **Branch**: main
 - **Folder**: /dist (or build output folder)
 
 #### Custom Domain (Optional):
+
 - Configure custom domain if needed
 - Enable HTTPS enforcement
 - Set up DNS records
@@ -291,6 +324,7 @@ permissions:
 ### 7. Community Health Files
 
 #### Files to Create:
+
 - `CODE_OF_CONDUCT.md` - Community guidelines
 - `CONTRIBUTING.md` - Contribution guidelines
 - `SECURITY.md` - Security policy and reporting
@@ -300,6 +334,7 @@ permissions:
 ### 8. Labels Configuration
 
 #### Custom Labels to Create:
+
 - `bug` - Bug reports
 - `enhancement` - Feature enhancements
 - `good first issue` - Good for newcomers
@@ -317,6 +352,7 @@ permissions:
 ### 9. Teams and Collaborators
 
 #### Initial Setup:
+
 - **Maintainers**: Repository owner
 - **Collaborators**: Add team members as needed
 - **Teams**: Create teams for different roles (development, testing, documentation)
@@ -324,6 +360,7 @@ permissions:
 ### 10. Integration and Services
 
 #### Services to Configure:
+
 - **GitHub Actions**: Already included
 - **GitHub Packages**: Not needed initially
 - **GitHub Codespaces**: Optional for development
@@ -332,6 +369,7 @@ permissions:
 ### 11. Documentation Structure
 
 #### Documentation to Create:
+
 - `docs/` folder structure
 - `docs/ARCHITECTURE.md` - System architecture
 - `docs/API.md` - API documentation
@@ -342,6 +380,7 @@ permissions:
 ### 12. Automation and Tooling
 
 #### GitHub Apps to Consider:
+
 - **Stale**: Close stale issues and PRs
 - **Lock Conversations**: Lock old closed issues
 - **Pull Request Labeler**: Auto-label PRs
@@ -351,6 +390,7 @@ permissions:
 ### 13. Monitoring and Alerts
 
 #### Notifications to Configure:
+
 - **Repository notifications**: Enabled for important events
 - **Security alerts**: Enabled for Dependabot and CodeQL
 - **Dependabot alerts**: Email notifications
@@ -360,6 +400,7 @@ permissions:
 ### 14. Backup and Recovery
 
 #### Backup Strategy:
+
 - **Git repository**: Regular pushes to GitHub
 - **Issues and PRs**: Native GitHub storage
 - **Wiki pages**: Native GitHub storage
@@ -368,6 +409,7 @@ permissions:
 ### 15. Migration and Import
 
 #### Initial Import:
+
 - Push existing local repository to GitHub
 - Verify all files are transferred correctly
 - Check that commit history is preserved
@@ -376,12 +418,14 @@ permissions:
 ## Implementation Order
 
 ### Phase 1: Repository Creation (Completed ✅)
+
 1. ✅ Create public repository on GitHub
 2. ✅ Configure basic repository settings
 3. ✅ Push local repository to GitHub
 4. ✅ Upload this plan document
 
 ### Phase 2: Security Configuration (Completed ✅)
+
 1. ✅ Enable GitHub Advanced Security features
 2. ✅ Configure Dependabot
 3. ✅ Set up CodeQL workflows
@@ -389,24 +433,28 @@ permissions:
 5. ✅ Configure branch protection rules via API
 
 ### Phase 3: CI/CD Setup (Completed ✅)
+
 1. ✅ Create GitHub Actions workflows
 2. ✅ Configure status checks
 3. ✅ Set up automated testing
 4. ✅ Configure deployment to GitHub Pages
 
 ### Phase 4: Community Features (Completed ✅)
+
 1. ✅ Create issue and PR templates
 2. ✅ Set up community health files
 3. ✅ Configure labels
 4. ⏳ Set up discussion templates (optional)
 
 ### Phase 5: Documentation (Partially Completed ✅)
+
 1. ✅ Create comprehensive documentation (PRD, Setup Plan)
 2. ⏳ Set up wiki structure (optional)
 3. ⏳ Create architecture documentation (to be done during development)
 4. ✅ Write contribution guidelines
 
 ### Phase 6: Optimization (Iterative)
+
 1. Monitor and optimize CI/CD performance
 2. Refine security configurations
 3. Update dependency configurations
@@ -415,24 +463,28 @@ permissions:
 ## Success Criteria
 
 ### Repository Setup:
+
 - ✅ Public repository created and accessible
 - ✅ All files pushed from local repository
 - ✅ Repository settings configured correctly
 - ✅ Branch protection rules active
 
 ### Security Configuration:
+
 - ✅ Dependabot alerts enabled and functioning
 - ✅ CodeQL scanning active and producing results
 - ✅ Secret scanning enabled
 - ✅ Dependency updates automated
 
 ### CI/CD Pipeline:
+
 - ✅ All workflows running successfully
 - ✅ Status checks passing
 - ✅ Automated deployment to GitHub Pages
 - ✅ Security scans integrated
 
 ### Community Features:
+
 - ✅ Templates created and functional
 - ✅ Labels configured
 - ✅ Community health files in place
@@ -441,12 +493,14 @@ permissions:
 ## Maintenance and Updates
 
 ### Regular Maintenance Tasks:
+
 - **Weekly**: Review Dependabot alerts and updates
 - **Monthly**: Review CodeQL alerts and security findings
 - **Quarterly**: Update dependencies and configurations
 - **As needed**: Update workflows and automation
 
 ### Monitoring:
+
 - GitHub Actions workflow runs
 - Security alerts and notifications
 - Dependency update performance
@@ -463,7 +517,7 @@ permissions:
 ## Next Steps
 
 1. ✅ Execute Phase 1: Repository Creation
-2. ✅ Execute Phase 2: Security Configuration  
+2. ✅ Execute Phase 2: Security Configuration
 3. ✅ Execute Phase 3: CI/CD Setup
 4. ✅ Execute Phase 4: Community Features
 5. ⏳ Execute Phase 5: Documentation (ongoing)
@@ -474,8 +528,9 @@ permissions:
 ## Repository Status Summary
 
 ### ✅ Completed Configurations
+
 - **Repository**: Public repository created at https://github.com/Sentry01/battleship-game
-- **Security Features**: 
+- **Security Features**:
   - Dependabot alerts and security updates enabled
   - CodeQL static analysis configured
   - Secret scanning enabled
@@ -486,9 +541,11 @@ permissions:
 - **Documentation**: PRD, setup plan, contributing guidelines, security policy, code of conduct
 
 ### ⏳ Manual Configuration Required
+
 - **None** - All configurations completed via GitHub CLI and API
 
 ### 📝 Notes on Branch Protection
+
 - Branch protection configured with practical settings for initial development
 - Currently requires 1 reviewer but no specific status checks (CI workflows not yet active)
 - Admin enforcement disabled during initial development phase
@@ -497,4 +554,5 @@ permissions:
 - Configuration can be tightened as development progresses
 
 ### 🚀 Ready for Development
+
 The repository is now fully configured and ready for battleship game development. All automated security features, CI/CD pipelines, and community features are in place.

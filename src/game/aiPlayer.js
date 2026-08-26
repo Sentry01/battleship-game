@@ -1,17 +1,20 @@
 export class AIPlayer {
-  constructor(difficulty = 'medium') {
+  constructor(difficulty = "medium") {
     this.difficulty = difficulty;
     this.previousHits = [];
     this.potentialTargets = [];
+    this.shipOrientation = {}; // Track orientation of hit ships
+    this.currentTargetShip = null; // Track which ship we're currently hunting
+    this.remainingShips = [5, 4, 3, 3, 2]; // Default ship sizes
   }
 
   getTarget(playerGrid, attackRecord) {
     switch (this.difficulty) {
-      case 'easy':
+      case "easy":
         return this.getEasyTarget(attackRecord);
-      case 'medium':
+      case "medium":
         return this.getMediumTarget(playerGrid, attackRecord);
-      case 'hard':
+      case "hard":
         return this.getHardTarget(playerGrid, attackRecord);
       default:
         return this.getMediumTarget(playerGrid, attackRecord);
@@ -85,13 +88,13 @@ export class AIPlayer {
 
     for (let row = 0; row < gridSize; row++) {
       for (let col = 0; col < gridSize; col++) {
-        if (attackRecord[row][col] === 'hit') {
+        if (attackRecord[row][col] === "hit") {
           // Check adjacent cells for continuation
           const adjacent = [
             { row: row - 1, col },
             { row: row + 1, col },
             { row, col: col - 1 },
-            { row, col: col + 1 }
+            { row, col: col + 1 },
           ];
 
           for (const adj of adjacent) {
@@ -109,7 +112,7 @@ export class AIPlayer {
   getProbabilityTarget(attackRecord) {
     const targets = this.getAvailableTargets(attackRecord);
     // Simple probability: center and checkerboard pattern preferred
-    const weightedTargets = targets.map(target => {
+    const weightedTargets = targets.map((target) => {
       let weight = 1;
       // Prefer center positions
       const distanceFromCenter = Math.abs(target.row - 4.5) + Math.abs(target.col - 4.5);
@@ -127,14 +130,13 @@ export class AIPlayer {
     return topTargets[Math.floor(Math.random() * topTargets.length)];
   }
 
-  getAdvancedProbabilityTarget(playerGrid, attackRecord) {
-    const targets = this.getAvailableTargets(attackRecord);
+  getAdvancedProbabilityTarget(_playerGrid, attackRecord) {
     const gridSize = 10;
 
     // Build probability matrix based on remaining ship sizes
-    const probabilityMatrix = Array(gridSize).fill(null).map(() => 
-      Array(gridSize).fill(0)
-    );
+    const probabilityMatrix = Array(gridSize)
+      .fill(null)
+      .map(() => Array(gridSize).fill(0));
 
     // Calculate probability for each cell based on ship placement possibilities
     for (let row = 0; row < gridSize; row++) {
@@ -145,9 +147,7 @@ export class AIPlayer {
         }
 
         // Calculate how many ships of each size could fit here
-        // This is a simplified version - full implementation would track remaining ships
-        const shipSizes = [5, 4, 3, 3, 2];
-        for (const size of shipSizes) {
+        for (const size of this.remainingShips) {
           // Check horizontal placement
           let canPlaceHorizontal = true;
           for (let i = 0; i < size; i++) {
@@ -193,24 +193,88 @@ export class AIPlayer {
     return bestTargets[Math.floor(Math.random() * bestTargets.length)];
   }
 
-  getBestAdjacentTarget(adjacentTargets, playerGrid, attackRecord) {
+  getBestAdjacentTarget(adjacentTargets, _playerGrid, _attackRecord) {
     // Prioritize targets that continue a line of hits
-    // This is a simplified version - full implementation would track ship orientation
+    // Check if we have an established orientation for the current ship
+    if (this.currentTargetShip && this.shipOrientation[this.currentTargetShip]) {
+      const orientation = this.shipOrientation[this.currentTargetShip];
+      const lastHit = this.previousHits[this.previousHits.length - 1];
+
+      // Filter targets that match the orientation
+      const orientedTargets = adjacentTargets.filter((target) => {
+        if (orientation === "horizontal") {
+          return target.row === lastHit.row;
+        } else {
+          return target.col === lastHit.col;
+        }
+      });
+
+      if (orientedTargets.length > 0) {
+        return orientedTargets[Math.floor(Math.random() * orientedTargets.length)];
+      }
+    }
+
+    // If no orientation established, try to determine it
+    const horizontalTargets = adjacentTargets.filter((t) => {
+      const matchingHits = this.previousHits.filter((h) => h.row === t.row);
+      return matchingHits.length > 0;
+    });
+
+    const verticalTargets = adjacentTargets.filter((t) => {
+      const matchingHits = this.previousHits.filter((h) => h.col === t.col);
+      return matchingHits.length > 0;
+    });
+
+    if (horizontalTargets.length > 0 && verticalTargets.length > 0) {
+      // Both orientations possible, prefer the one with more hits
+      if (horizontalTargets.length >= verticalTargets.length) {
+        return horizontalTargets[Math.floor(Math.random() * horizontalTargets.length)];
+      } else {
+        return verticalTargets[Math.floor(Math.random() * verticalTargets.length)];
+      }
+    } else if (horizontalTargets.length > 0) {
+      return horizontalTargets[Math.floor(Math.random() * horizontalTargets.length)];
+    } else if (verticalTargets.length > 0) {
+      return verticalTargets[Math.floor(Math.random() * verticalTargets.length)];
+    }
+
+    // Fallback to random
     return adjacentTargets[Math.floor(Math.random() * adjacentTargets.length)];
   }
 
   recordHit(row, col) {
     this.previousHits.push({ row, col });
+
+    // Determine or update ship orientation
+    if (this.previousHits.length >= 2) {
+      const lastHit = this.previousHits[this.previousHits.length - 1];
+      const secondLastHit = this.previousHits[this.previousHits.length - 2];
+
+      if (lastHit.row === secondLastHit.row) {
+        // Horizontal orientation
+        if (!this.currentTargetShip) {
+          this.currentTargetShip = `ship_${row}_${col}`;
+        }
+        this.shipOrientation[this.currentTargetShip] = "horizontal";
+      } else if (lastHit.col === secondLastHit.col) {
+        // Vertical orientation
+        if (!this.currentTargetShip) {
+          this.currentTargetShip = `ship_${row}_${col}`;
+        }
+        this.shipOrientation[this.currentTargetShip] = "vertical";
+      }
+    }
+
     // Add adjacent cells to potential targets for follow-up (with boundary checking)
     const adjacent = [
       { row: row - 1, col },
       { row: row + 1, col },
       { row, col: col - 1 },
-      { row, col: col + 1 }
+      { row, col: col + 1 },
     ];
     // Only add valid positions (within grid bounds)
     const validAdjacent = adjacent.filter(
-      pos => pos.row >= 0 && pos.row < 10 && pos.col >= 0 && pos.col < 10
+      (pos) => pos.row >= 0 && pos.row < 10 && pos.col >= 0 && pos.col < 10
     );
     this.potentialTargets.push(...validAdjacent);
   }
@@ -218,12 +282,25 @@ export class AIPlayer {
   recordMiss(row, col) {
     // Remove this position from potential targets if it exists
     this.potentialTargets = this.potentialTargets.filter(
-      target => !(target.row === row && target.col === col)
+      (target) => !(target.row === row && target.col === col)
     );
   }
 
   reset() {
     this.previousHits = [];
     this.potentialTargets = [];
+    this.shipOrientation = {};
+    this.currentTargetShip = null;
+    this.remainingShips = [5, 4, 3, 3, 2];
+  }
+
+  updateRemainingShips(sunkShipSize) {
+    // Remove the sunk ship from remaining ships
+    const index = this.remainingShips.indexOf(sunkShipSize);
+    if (index > -1) {
+      this.remainingShips.splice(index, 1);
+    }
+    // Reset current ship tracking when a ship is sunk
+    this.currentTargetShip = null;
   }
 }

@@ -1,7 +1,9 @@
 # GitHub MCP Server Setup Instructions
 
 ## What is GitHub MCP Server?
+
 The GitHub MCP server allows Devin to interact with GitHub's API directly, enabling:
+
 - Creating and managing repositories
 - Managing issues and pull requests
 - Automating GitHub workflows
@@ -64,6 +66,7 @@ After configuring, you can test if the MCP server is working by starting a new D
 ### 4. What Devin Can Do With GitHub MCP
 
 Once configured, Devin will be able to:
+
 - Create the `battleship-game` repository
 - Configure repository settings
 - Set up GitHub Advanced Security features
@@ -82,16 +85,19 @@ Once configured, Devin will be able to:
 ## Troubleshooting
 
 ### MCP Server Not Starting
+
 - Ensure Node.js and npm are installed
 - Try running `npx -y @modelcontextprotocol/server-github` manually
 - Check that your GitHub token is valid
 
 ### Permission Errors
+
 - Verify your token has the required scopes
 - Check that the token hasn't expired
 - Ensure you have permission to create repositories in your GitHub account
 
 ### Configuration Not Working
+
 - Make sure the configuration file is in the correct location (`.devin/mcp_config.local.json`)
 - Verify the JSON syntax is correct
 - Try restarting your Devin session
@@ -99,6 +105,7 @@ Once configured, Devin will be able to:
 ## Next Steps
 
 Once you've configured the GitHub MCP server with your token, let me know and I'll:
+
 1. Create the public GitHub repository
 2. Configure all the GitHub Advanced Security features
 3. Set up Dependabot and CodeQL

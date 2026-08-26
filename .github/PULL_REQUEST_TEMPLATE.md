@@ -1,9 +1,11 @@
 ## Description
+
 Please include a summary of the changes and the related issue. Please also include relevant motivation and context.
 
 Fixes # (issue)
 
 ## Type of change
+
 Please delete options that are not relevant.
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
@@ -12,6 +14,7 @@ Please delete options that are not relevant.
 - [ ] This change requires a documentation update
 
 ## How Has This Been Tested?
+
 Please describe the tests that you ran to verify your changes.
 
 - [ ] Unit tests pass locally
@@ -20,6 +23,7 @@ Please describe the tests that you ran to verify your changes.
 - [ ] Manual testing performed
 
 ## Checklist:
+
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas

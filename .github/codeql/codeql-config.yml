@@ -9,5 +9,5 @@ paths-ignore:
   - dist/**
   - build/**
   - coverage/**
-  - '**/*.test.js'
-  - '**/*.spec.js'
+  - "**/*.test.js"
+  - "**/*.spec.js"
