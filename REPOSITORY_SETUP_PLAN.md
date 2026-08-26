@@ -488,5 +488,12 @@ permissions:
 ### ⏳ Manual Configuration Required
 - **None** - All configurations completed via GitHub CLI and API
 
+### 📝 Notes on Branch Protection
+- Branch protection configured with practical settings for initial development
+- Currently requires 1 reviewer but no specific status checks (CI workflows not yet active)
+- Status checks can be added to branch protection once CI workflows are running
+- Admin enforcement enabled for security
+- Force pushes and deletions disabled for branch safety
+
 ### 🚀 Ready for Development
 The repository is now fully configured and ready for battleship game development. All automated security features, CI/CD pipelines, and community features are in place.
