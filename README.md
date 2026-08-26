@@ -1,6 +1,6 @@
 # Battleship Game
 
-A modern, visually appealing battleship game built with JavaScript where players can compete against AI opponents. This project demonstrates clean, modern design following Cognition's engineering-first aesthetic with comprehensive testing and security measures.
+A modern, visually appealing battleship game built with JavaScript where players can compete against AI opponents. This project demonstrates clean, modern design following clean aesthetic with comprehensive testing and security measures.
 
 ## Features
 
