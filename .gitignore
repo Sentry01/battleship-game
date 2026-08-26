@@ -46,3 +46,4 @@ yarn-error.log*
 # MCP config (sensitive data)
 .mcp_config.local.json
 .devin/mcp_config.local.json
+.devin/mcp_config.json
