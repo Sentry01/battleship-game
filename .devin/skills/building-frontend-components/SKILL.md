@@ -72,12 +72,12 @@ Modals MUST implement focus trap. See `references/patterns.md` → "Focus Trap I
 
 ### Interactive Elements
 
-| Element | Requirements |
-|---------|-------------|
-| Button | Visible focus indicator, disabled state styling |
-| Link | Underline or clear affordance, focus visible |
-| Custom control | `role`, `aria-*` attributes, keyboard handler |
-| Menu/Dropdown | `aria-expanded`, `aria-haspopup`, roving tabindex |
+| Element        | Requirements                                      |
+| -------------- | ------------------------------------------------- |
+| Button         | Visible focus indicator, disabled state styling   |
+| Link           | Underline or clear affordance, focus visible      |
+| Custom control | `role`, `aria-*` attributes, keyboard handler     |
+| Menu/Dropdown  | `aria-expanded`, `aria-haspopup`, roving tabindex |
 
 ## Component State Checklist
 
@@ -93,18 +93,21 @@ Every component MUST handle:
 ## Anti-Patterns (Stop If You See These)
 
 ### Generic AI Aesthetics
+
 - ❌ Purple-on-white gradients with no context
 - ❌ Cookie-cutter card layouts (centered hero + three icons)
 - ❌ Flat solid backgrounds lacking atmosphere
 - ✅ Honor existing design system OR establish distinctive direction
 
 ### Technical Debt
+
 - ❌ Inline styles scattered throughout (use CSS modules, Tailwind, or tokens)
 - ❌ Magic numbers instead of design tokens
 - ❌ Hardcoded colors like `#2563eb` without token reference
 - ✅ Use CSS custom properties or design tokens
 
 ### Accessibility Oversights
+
 - ❌ Missing `role="dialog"` and `aria-modal` on modals
 - ❌ No focus trap in modals/drawers
 - ❌ Error messages without `role="alert"`
@@ -113,12 +116,12 @@ Every component MUST handle:
 
 ## Common Mistakes from Baseline Testing
 
-| What Agent Did | What Was Missing |
-|----------------|------------------|
+| What Agent Did             | What Was Missing                                        |
+| -------------------------- | ------------------------------------------------------- |
 | Modal with Escape handling | No `role="dialog"`, no focus trap, no focus restoration |
-| Form with labels | No `aria-invalid`, no `aria-describedby` for errors |
-| Error message display | No `role="alert"` for screen reader announcement |
-| Inline styles | No design tokens, creates maintenance burden |
+| Form with labels           | No `aria-invalid`, no `aria-describedby` for errors     |
+| Error message display      | No `role="alert"` for screen reader announcement        |
+| Inline styles              | No design tokens, creates maintenance burden            |
 
 ## When NOT to Use This Skill
 
