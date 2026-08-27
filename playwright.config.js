@@ -29,5 +29,6 @@ export default defineConfig({
     command: "npm run dev",
     url: "http://localhost:5176/battleship-game",
     reuseExistingServer: !process.env.CI,
+    timeout: 120000,
   },
 });
