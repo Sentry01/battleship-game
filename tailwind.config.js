@@ -34,22 +34,22 @@ export default {
         sans: ["Space Grotesk", "Inter", "system-ui", "sans-serif"],
       },
       animation: {
-        'fade-in': 'fade-in 0.4s ease-out',
-        'scale-in': 'scale-in 0.5s ease-out',
-        'float': 'float 3s ease-in-out infinite',
+        "fade-in": "fade-in 0.4s ease-out",
+        "scale-in": "scale-in 0.5s ease-out",
+        float: "float 3s ease-in-out infinite",
       },
       keyframes: {
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-        'scale-in': {
-          '0%': { opacity: '0', transform: 'scale(0.9)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
     },

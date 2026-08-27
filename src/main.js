@@ -198,7 +198,7 @@ class BattleshipGame {
               }
             }
 
-            return `<div class="${cellClass}" data-row="${rowIndex}" data-col="${colIndex}" data-type="${type === 'ai' ? 'attack' : 'player'}" tabindex="${tabIndex}" role="button" aria-label="${ariaLabel}">${cellContent}</div>`;
+            return `<div class="${cellClass}" data-row="${rowIndex}" data-col="${colIndex}" data-type="${type === "ai" ? "attack" : "player"}" tabindex="${tabIndex}" role="button" aria-label="${ariaLabel}">${cellContent}</div>`;
           })
           .join("")
       )
@@ -352,12 +352,13 @@ class BattleshipGame {
 
           if (!placed) {
             // Show error message instead of alert
-            const placementCard = document.querySelector('.card');
+            const placementCard = document.querySelector(".card");
             if (placementCard) {
-              const errorMsg = document.createElement('div');
-              errorMsg.className = 'mt-4 p-4 bg-error/20 border border-error rounded-card text-error animate-fade-in';
-              errorMsg.setAttribute('role', 'alert');
-              errorMsg.textContent = 'Failed to auto-place ships. Please try manual placement.';
+              const errorMsg = document.createElement("div");
+              errorMsg.className =
+                "mt-4 p-4 bg-error/20 border border-error rounded-card text-error animate-fade-in";
+              errorMsg.setAttribute("role", "alert");
+              errorMsg.textContent = "Failed to auto-place ships. Please try manual placement.";
               placementCard.appendChild(errorMsg);
               setTimeout(() => errorMsg.remove(), 3000);
             }
@@ -386,12 +387,13 @@ class BattleshipGame {
 
     if (!playerPlaced || !aiPlaced) {
       // Show error message instead of alert
-      const setupCard = document.querySelector('.card');
+      const setupCard = document.querySelector(".card");
       if (setupCard) {
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'mt-4 p-4 bg-error/20 border border-error rounded-card text-error animate-fade-in';
-        errorMsg.setAttribute('role', 'alert');
-        errorMsg.textContent = 'Failed to place ships randomly. Please try again.';
+        const errorMsg = document.createElement("div");
+        errorMsg.className =
+          "mt-4 p-4 bg-error/20 border border-error rounded-card text-error animate-fade-in";
+        errorMsg.setAttribute("role", "alert");
+        errorMsg.textContent = "Failed to place ships randomly. Please try again.";
         setupCard.appendChild(errorMsg);
         setTimeout(() => errorMsg.remove(), 3000);
       }
