@@ -2,7 +2,10 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Gameplay Tests", () => {
   test("play a complete game with medium difficulty", async ({ page, browserName }) => {
-    test.skip(browserName === "firefox", "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually");
+    test.skip(
+      browserName === "firefox",
+      "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually"
+    );
     test.setTimeout(90000); // 90 second timeout
     await page.goto("/");
 
@@ -64,7 +67,10 @@ test.describe("Gameplay Tests", () => {
   });
 
   test("manual placement flow", async ({ page, browserName }) => {
-    test.skip(browserName === "firefox", "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually");
+    test.skip(
+      browserName === "firefox",
+      "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually"
+    );
     test.setTimeout(60000); // 1 minute timeout
     await page.goto("/");
 
@@ -98,7 +104,10 @@ test.describe("Gameplay Tests", () => {
   });
 
   test("all game states and transitions", async ({ page, browserName }) => {
-    test.skip(browserName === "firefox", "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually");
+    test.skip(
+      browserName === "firefox",
+      "Firefox has viewport issues with gameplay test - game works correctly in Firefox manually"
+    );
     test.setTimeout(60000); // 1 minute timeout
     await page.goto("/");
 
